@@ -54,9 +54,3 @@ Then go to `http://localhost:8000` from your browser and see the app.
 ## Ask a question?
 
 If you have any query please contact at msa4rakib@gmail.com
-
-
-## ToDo
-
-[x] Add Controller, Model, migrations etc.  
-[ ] Add design (like as admin dashboard, suggest: minimal type).

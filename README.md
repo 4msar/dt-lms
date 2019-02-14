@@ -1,6 +1,6 @@
 # Laravel LMS Application
 
-This project is a project of [Saiful Alam](https://github.com/msa-rakib) build for DevTravelers.
+This project is a project of [Saiful Alam](https://github.com/msa-rakib) build for [DevTravelers](https://www.facebook.com/groups/DevTravelers/).
 
 ## Installation
 

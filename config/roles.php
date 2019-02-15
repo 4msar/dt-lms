@@ -1,103 +1,168 @@
 <?php 
 
+/* This is the role & permission file.
+ * here to set permission to a user role.
+ * the first array is the role name.
+ * the second array is the Controller name.
+ * the third array is the action/method name.
+ * and the value is the permission.
+ * if the value is true then the role have the right permission.
+ * if the value is false then the have not right permission to access this.
+ */
+
 return [
+	// README: Remember if you create any custom Controller@method then add this here.
+	
 	'admin' => [
-		// TODO: add admin permission
-		'books' => [
-			'list' => true,
-			'add' => true,
-			'edit' => true,
-			'delete' => true,
+		'HomeController' => [
+			'index' => true
 		],
-		'branch' => [
-			'list' => true,
-			'add' => true,
+		'BookController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
 			'edit' => true,
-			'delete' => true,
+			'update' => true,
+			'destroy' => true,
 		],
-		'category' => [
-			'list' => true,
-			'add' => true,
+		'BranchController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
 			'edit' => true,
-			'delete' => true,
+			'update' => true,
+			'destroy' => true,
 		],
-		'reservation' => [
-			'list' => true,
-			'add' => true,
+		'CategoryController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
 			'edit' => true,
-			'delete' => true,
+			'update' => true,
+			'destroy' => true,
 		],
-		'user' => [
-			'list' => true,
-			'add' => true,
+		'ReservationController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
 			'edit' => true,
-			'delete' => true,
+			'update' => true,
+			'destroy' => true,
+		],
+		'UserController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
+			'edit' => true,
+			'update' => true,
+			'destroy' => true,
 		],
 	],
+
 	'manager' => [
-		// TODO: add manager permission
-		'books' => [
-			'list' => true,
-			'add' => true,
-			'edit' => true,
-			'delete' => false,
+		'HomeController' => [
+			'index' => true
 		],
-		'branch' => [
-			'list' => true,
-			'add' => true,
+		'BookController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
 			'edit' => true,
-			'delete' => false,
+			'update' => true,
+			'destroy' => false,
 		],
-		'category' => [
-			'list' => true,
-			'add' => true,
-			'edit' => true,
-			'delete' => true,
+		'BranchController' => [
+			'index' => true,
+			'create' => false,
+			'store' => false,
+			'show' => true,
+			'edit' => false,
+			'update' => false,
+			'destroy' => false,
 		],
-		'reservation' => [
-			'list' => true,
-			'add' => true,
+		'CategoryController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
 			'edit' => true,
-			'delete' => true,
+			'update' => true,
+			'destroy' => false,
 		],
-		'user' => [
-			'list' => true,
-			'add' => true,
+		'ReservationController' => [
+			'index' => true,
+			'create' => true,
+			'store' => true,
+			'show' => true,
 			'edit' => true,
-			'delete' => true,
+			'update' => true,
+			'destroy' => true,
+		],
+		'UserController' => [
+			'index' => true,
+			'create' => false,
+			'store' => false,
+			'show' => true,
+			'edit' => false,
+			'update' => false,
+			'destroy' => false,
 		],
 	],
+
 	'user' => [
-		// TODO: add user permission
-		'books' => [
-			'list' => true,
-			'add' => false,
-			'edit' => false,
-			'delete' => false,
+		'HomeController' => [
+			'index' => true
 		],
-		'branch' => [
-			'list' => true,
-			'add' => false,
+		'BookController' => [
+			'index' => true,
+			'create' => false,
+			'store' => false,
+			'show' => true,
 			'edit' => false,
-			'delete' => false,
+			'update' => false,
+			'destroy' => false,
 		],
-		'category' => [
-			'list' => true,
-			'add' => false,
+		'BranchController' => [
+			'index' => true,
+			'create' => false,
+			'store' => false,
+			'show' => true,
 			'edit' => false,
-			'delete' => false,
+			'update' => false,
+			'destroy' => false,
 		],
-		'reservation' => [
-			'list' => true,
-			'add' => false,
+		'CategoryController' => [
+			'index' => true,
+			'create' => false,
+			'store' => false,
+			'show' => true,
 			'edit' => false,
-			'delete' => false,
+			'update' => false,
+			'destroy' => false,
 		],
-		'user' => [
-			'list' => false,
-			'add' => false,
+		'ReservationController' => [
+			'index' => true,
+			'create' => false,
+			'store' => false,
+			'show' => true,
 			'edit' => false,
-			'delete' => false,
+			'update' => false,
+			'destroy' => false,
+		],
+		'UserController' => [
+			'index' => false,
+			'create' => false,
+			'store' => false,
+			'show' => false,
+			'edit' => false,
+			'update' => false,
+			'destroy' => false,
 		],
 	],
 

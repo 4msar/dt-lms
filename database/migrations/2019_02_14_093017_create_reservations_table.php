@@ -20,7 +20,7 @@ class CreateReservationsTable extends Migration
             $table->datetime('issue_date')->nullable();
             $table->datetime('return_date')->nullable();
             $table->datetime('returned_at')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

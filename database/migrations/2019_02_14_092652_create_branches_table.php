@@ -14,7 +14,8 @@ class CreateBranchesTable extends Migration
     public function up()
     {
         Schema::create('branches', function (Blueprint $table) {
-            $table->increments('hub_id');
+            $table->increments('id');
+            $table->integer('hub_id')->nullable();
             $table->text('address')->nullable();
             $table->string('area')->nullable();
             $table->string('map_link')->nullable();
@@ -22,7 +23,7 @@ class CreateBranchesTable extends Migration
             $table->string('contact_number')->nullable();
             $table->string('close_days')->nullable();
             $table->string('open_time')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

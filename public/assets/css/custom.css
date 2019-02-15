@@ -1,0 +1,26 @@
+/*====== Custom CSS =======*/
+
+
+.navbar-brand{
+	text-align: center;
+}
+
+.navbar-brand img{
+	height: 40px;
+}
+
+
+/* Responsive CSS */
+
+@media (max-width: 575px){
+	.right-panel .navbar-brand {
+	    width: auto;
+	}
+}
+
+@media (max-width: 768px){
+	aside.left-panel{
+		overflow: auto;
+	}
+}
+

@@ -23,7 +23,6 @@
                                 <tr>
                                     <th class="serial">#</th>
                                     <th class="avatar">Image</th>
-                                    <th>ID</th>
                                     <th>Book Name</th>
                                     <th>Author Name</th>
                                     <th>Quantity</th>
@@ -40,7 +39,6 @@
                                             <a href="#"><img class="rounded-circle" src="{{ asset('assets/images/books.svg') }}" alt="{{ $book->book_name }}"></a>
                                         </div>
                                     </td>
-                                    <td>{{ $book->book_id }}</td>
                                     <td><span class="name">{{ $book->book_name }}</span> </td>
                                     <td> <span class="product">{{ $book->author_name }}</span> </td>
                                     <td><span class="count">{{ $book->quantity }}</span></td>

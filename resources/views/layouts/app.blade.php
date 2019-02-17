@@ -43,7 +43,15 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Books</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-list"></i><a href="{{ route('books.index') }}">All Books</a></li>
-                            <li><i class="fa fa-plus"></i><a href="tables-data.html">Add Book</a></li>
+                            <li><i class="fa fa-plus"></i><a href="{{ route('books.create') }}">Add Book</a></li>
+                            <li><i class="fa fa-cubes"></i><a href="{{ route('categories.index') }}">Categories</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-random"></i>Branches</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-list"></i><a href="{{ route('branches.index') }}">All Branches</a></li>
+                            <li><i class="fa fa-plus"></i><a href="{{ route('branches.create') }}">Add Branch</a></li>
                         </ul>
                     </li>
 

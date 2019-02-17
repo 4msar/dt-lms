@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::paginate(20);
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -35,19 +37,34 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:200',
+            'image'=>'nullable|image'
+        ]);
+        $name = null;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+
+            $name = str_random(5).time().'.'.$file->extension();
+            $file->move(storage_path('app/public/'), $name);
+        }
+
+        $category = Category::create([
+            'name' => $request->input('name'),
+            'image' => $name
+        ]);
+
+        if($category){
+            $message = ['success' => 'Category added successfully!'];
+        }else{
+            $message = ['warning' => 'Failed to Add!'];
+            if(file_exists(storage_path('app/public/'.$name)) && !is_dir(storage_path('app/public/'.$name))){
+                unlink(storage_path('app/public/'.$name));
+            }
+        }
+        return back()->with($message);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -57,7 +74,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -69,7 +86,32 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:200',
+            'image'=>'nullable|image'
+        ]);
+        $old = $category->image;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+
+            $name = str_random(5).time().'.'.$file->extension();
+            $file->move(storage_path('app/public/'), $name);
+
+            if(file_exists(storage_path('app/public/'.$name)) && file_exists(storage_path('app/public/'.$old)) && !is_dir(storage_path('app/public/'.$old))){
+                unlink(storage_path('app/public/'.$old));
+            }
+        }
+
+        $category->name = $request->input('name');
+        $category->image = isset($name) ? $name : $old;
+        $category->save();
+
+        if($category){
+            $message = ['success' => 'Category update successfully!'];
+        }else{
+            $message = ['warning' => 'Failed to update!'];
+        }
+        return redirect()->route('categories.index')->with($message);
     }
 
     /**
@@ -80,6 +122,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if($category->delete()){
+            $message = ['success' => 'Category deleted successfully!'];
+        }else{
+            $message = ['warning' => 'Failed to delete!'];
+        }
+        return back()->with($message);
     }
 }

@@ -20,7 +20,14 @@ Auth::routes(['verify'=> true]);
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::resource('/books', 'BookController');
-Route::resource('/branchs', 'BranchController');
-Route::resource('/categories', 'CategoryController');
+Route::resource('/branches', 'BranchController');
+Route::resource('/categories', 'CategoryController')->except([
+    'create', 'show'
+]);
 Route::resource('/reservation', 'ReservationController');
 Route::resource('/users', 'UserController');
+
+
+Route::get('test', function() {
+	dd(microtime());
+});

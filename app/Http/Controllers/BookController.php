@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\User;
+use App\Models\Branch;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -35,7 +38,10 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $categories = Category::all();
+        $branches = Branch::all();
+        return view('books.create', compact('users', 'categories', 'branches'));
     }
 
     /**

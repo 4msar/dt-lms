@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('pageTitle', 'Books')
+@section('pageTitle', 'Users')
 
 @push('breadcrumbs')
 <ol class="breadcrumb text-right">
     <li><a href="{{ route('home') }}">Dashboard</a></li>
-    <li class="active">Books</li>
+    <li class="active">Users</li>
 </ol>
 @endpush
 
@@ -13,42 +13,42 @@
     <div class="books-list">
         <div class="row">
             <div class="col-md-12">
+                @include('layouts.message')
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Books List</strong>
+                        <strong class="card-title">Users List</strong>
                     </div>
                     <div class="table-stats order-table ov-h ">
                         <table class="table ">
                             <thead>
                                 <tr>
                                     <th class="serial">#</th>
-                                    <th class="avatar">Image</th>
-                                    <th>Book Name</th>
-                                    <th>Author Name</th>
-                                    <th>Quantity</th>
-                                    <th>Status</th>
+                                    <th class="avatar">Avatar</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Work at</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($books as $book)
+                                @forelse($users as $user)
                                 <tr>
                                     <td class="serial">{{ $loop->iteration }}</td>
                                     <td class="avatar">
                                         <div class="round-img">
-                                            <img src="{{ route('image', ['type'=>'books', 'id'=>$book->id]) }}" alt="{{ $book->book_name }}">
+                                            <img src="{{ route('image', ['type'=>'user', 'id'=>$user->id]) }}" alt="{{ $user->user_name }}">
                                         </div>
                                     </td>
-                                    <td><span class="name">{{ $book->book_name }}</span> </td>
-                                    <td> <span class="product">{{ $book->author_name }}</span> </td>
-                                    <td><span class="count">{{ $book->quantity }}</span></td>
-                                    <td><span class="badge badge-{{ $book->status == 1 ? 'success' : 'warning' }}">{{ $book->status == 1 ? 'Available' : 'Not Available' }}</span></td>
+                                    <td>{{ $user->name }} </td>
+                                    <td>{{ $user->email }} </td>
+                                    <td>{{ ucfirst($user->role) }}</td>
+                                    <td>{{ ($user->work_at != null ? $user->work_at : '---' ) }}</td>
                                     <td>
-                                    
-                                        <form onsubmit="return confirm('Do you really want to delete?');" action="{{ route('books.destroy', ['book'=>$book->id]) }}" method="POST">
+                                        <form onsubmit="return confirm('Do you really want to delete?');" action="{{ route('users.destroy', ['user'=>$user->id]) }}" method="POST">
                                             <div class="btn-group">
-                                                <a class="btn btn-primary btn-sm" href="{{ route('books.show', ['book'=>$book->id]) }}"><i class="fa fa-eye"></i></a>
-                                                <a class="btn btn-info btn-sm" href="{{ route('books.edit', ['book'=>$book->id]) }}"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-primary btn-sm" href="{{ route('users.show', ['user'=>$user->id]) }}"><i class="fa fa-eye"></i></a>
+                                                <a class="btn btn-info btn-sm" href="{{ route('users.edit', ['user'=>$user->id]) }}"><i class="fa fa-edit"></i></a>
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -65,7 +65,7 @@
                         </table>
                     </div> <!-- /.table-stats -->
                 </div>
-                {{ $books->links() }}
+                {{ $users->links() }}
             </div>
         </div><!-- .row -->
     </div> <!-- .buttons -->

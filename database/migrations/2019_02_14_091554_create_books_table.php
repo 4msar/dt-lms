@@ -21,7 +21,6 @@ class CreateBooksTable extends Migration
             $table->integer('owner_id')->nullable()->comment('user_id');;
             $table->integer('category_id')->nullable();
             $table->string('image')->nullable();
-            $table->integer('available_id')->nullable();
             $table->integer('hub_id')->nullable();
             $table->integer('quantity')->default(1);
             $table->string('status')->default(1);

@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'permission', 'verified']);
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -58,7 +68,7 @@ class CategoryController extends Controller
             $message = ['success' => 'Category added successfully!'];
         }else{
             $message = ['warning' => 'Failed to Add!'];
-            if(file_exists(storage_path('app/public/'.$name)) && !is_dir(storage_path('app/public/'.$name))){
+            if(file_exists(storage_path('app/public/'.$name)) && $name != 'category.png' && !is_dir(storage_path('app/public/'.$name))){
                 unlink(storage_path('app/public/'.$name));
             }
         }

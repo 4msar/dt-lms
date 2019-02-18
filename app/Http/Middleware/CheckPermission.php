@@ -28,7 +28,7 @@ class CheckPermission
         list($controller, $action) = explode('@', $controllerAction);
 
 
-        if($roles[$controller][$action] === false){
+        if(isset($roles[$controller][$action]) && $roles[$controller][$action] === false){
             return redirect()->route('home')->with(['permission' => 'You have not any permission to do that!']);
         }
         return $next($request);

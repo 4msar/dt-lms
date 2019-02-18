@@ -27,6 +27,7 @@ Route::resource('/categories', 'CategoryController')->except([
 Route::resource('/reservation', 'ReservationController');
 Route::resource('/users', 'UserController');
 
+Route::get('/image/{type}/{id}', 'HomeController@image')->name('image');
 
 Route::get('test', function() {
 	dd(microtime());

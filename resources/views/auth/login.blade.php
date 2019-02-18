@@ -6,8 +6,8 @@
 <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class="form-group">
-        <label for="email">Email address</label>
-        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+        <label for="email">Email address or Username</label>
+        <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email/Username" required autofocus>
         @if ($errors->has('email'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('email') }}</strong>

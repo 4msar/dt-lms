@@ -24,6 +24,15 @@
         @endif
     </div>
     <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="email" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Enter user name" required>
+        @if ($errors->has('username'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('username') }}</strong>
+        </span>
+        @endif
+    </div>
+    <div class="form-group">
         <label for="password">Password</label>
         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
         @if ($errors->has('password'))

@@ -47,11 +47,24 @@
                             <li><i class="fa fa-cubes"></i><a href="{{ route('categories.index') }}">Categories</a></li>
                         </ul>
                     </li>
+                    @if(Auth::user()->ucan('branch'))
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-random"></i>Branches</a>
                         <ul class="sub-menu children dropdown-menu">
+                            @if(Auth::user()->ucan('branch', 'index'))
                             <li><i class="fa fa-list"></i><a href="{{ route('branches.index') }}">All Branches</a></li>
+                            @endif
+                            @if(Auth::user()->ucan('branch', 'create'))
                             <li><i class="fa fa-plus"></i><a href="{{ route('branches.create') }}">Add Branch</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                    @endif
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Users</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-list"></i><a href="{{ route('users.index') }}">All Users</a></li>
+                            <li><i class="fa fa-user-plus"></i><a href="{{ route('users.create') }}">Add User</a></li>
                         </ul>
                     </li>
 
@@ -90,7 +103,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="{{ asset('assets/images/admin.jpg')}}" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="{{ route('image', ['type'=>'user', 'id'=>auth()->id()]) }}" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">

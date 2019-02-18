@@ -63,7 +63,7 @@
                                     <td><span class="name">{{ $category->name }}</span> </td>
                                     <td class="avatar">
                                         <div class="round-img">
-                                            <a href="#"><img class="category-img" src="{{ asset('assets/images/books.svg') }}" alt="{{ $category->name }}"></a>
+                                            <a href="#"><img class="category-img" src="{{ route('image', ['type'=>'category', 'id'=>$category->id]) }}" alt="{{ $category->name }}"></a>
                                         </div>
                                     </td>
                                     <td>

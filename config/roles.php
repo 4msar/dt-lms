@@ -132,7 +132,7 @@ return [
 			'index' => true,
 			'create' => false,
 			'store' => false,
-			'show' => true,
+			'show' => false,
 			'edit' => false,
 			'update' => false,
 			'destroy' => false,

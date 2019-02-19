@@ -37,7 +37,14 @@
 
     </div>
     <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
-    <div class="pb-3"></div>
+    <div class="pb-2"></div>
+    <div class="social-login-content">
+        <div class="social-button">
+            <a href="{{ route('social', 'facebook') }}" class="btn social facebook btn-addon"><i class="ti-facebook"></i>Sign in with facebook</a>
+            <a href="{{ route('social', 'linkedin') }}" class="btn social linkedin btn-addon mt-2"><i class="ti-linkedin"></i>Sign in with linkedin</a>
+            <a href="{{ route('social', 'google') }}" class="btn social google btn-addon mt-2"><i class="ti-google"></i>Sign in with google</a>
+        </div>
+    </div>
     <div class="register-link m-t-15 text-center">
         <p>Don't have account ? <a href="{{ route('register') }}"> Sign Up Here</a></p>
     </div>

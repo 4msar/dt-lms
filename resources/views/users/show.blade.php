@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('pageTitle', 'View Book')
+@section('pageTitle', 'View User')
 
 @push('breadcrumbs')
 <ol class="breadcrumb text-right">
     <li><a href="{{ route('home') }}">Dashboard</a></li>
-    <li><a href="{{ route('books.index') }}">Book</a></li>
+    <li><a href="{{ route('users.index') }}">User</a></li>
     <li class="active">View</li>
 </ol>
 @endpush
@@ -16,47 +16,62 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">View Book</strong>
+                        <strong class="card-title">View User</strong>
                         <div class="float-right">
-                            <a href="{{ route('books.index') }}" class="btn btn-info btn-sm">Back</a>
+                            <a href="{{ route('users.index') }}" class="btn btn-info btn-sm">Back</a>
                         </div>
                     </div>
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <td>Book Name</td>
+                                <td>Full Name</td>
                                 <td>:</td>
-                                <td>{{ $book->book_name }}</td>
+                                <td>{{ $user->name }}</td>
                             </tr>
                             <tr>
-                                <td>Book Author</td>
+                                <td>Email</td>
                                 <td>:</td>
-                                <td>{{ $book->author_name }}</td>
+                                <td>{{ $user->email }}</td>
                             </tr>
                             <tr>
-                                <td>Book Category</td>
+                                <td>Username</td>
                                 <td>:</td>
-                                <td>{{ $book->category->name }}</td>
+                                <td>{{ $user->username }}</td>
                             </tr>
                             <tr>
-                                <td>Book Owner</td>
+                                <td>Mobile Number</td>
                                 <td>:</td>
-                                <td>{{ $book->owner->name }}</td>
+                                <td>{{ $user->mobile_number }}</td>
                             </tr>
                             <tr>
-                                <td>Branch</td>
+                                <td>Working Status</td>
                                 <td>:</td>
-                                <td>{{ $book->hub->address }}</td>
+                                <td>{{ $user->designation . ($user->work_at != null ? ' in '. $user->work_at : '')  }}</td>
                             </tr>
                             <tr>
-                                <td>Quantity</td>
+                                <td>Mailing Address</td>
                                 <td>:</td>
-                                <td>{{ $book->quantity }}</td>
+                                <td>{{ $user->mailing_address }}</td>
                             </tr>
                             <tr>
-                                <td>Status</td>
+                                <td>Role</td>
                                 <td>:</td>
-                                <td><span class="badge badge-{{ $book->status == 1 ? 'success' : 'warning' }}">{{ $book->status == 1 ? 'Available' : 'Not Available' }}</span></td>
+                                <td>{{ ucfirst($user->role) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Linked Social Account</td>
+                                <td>:</td>
+                                <td> <div class="social-icons" title="Connected">
+                                    @if($user->facebook_profile_id)
+                                    <i class="fa fa-facebook"></i>
+                                    @endif
+                                    @if($user->linkedin_profile_id)
+                                    <i class="fa fa-linkedin"></i>
+                                    @endif
+                                    @if($user->google_id)
+                                    <i class="fa fa-google-plus"></i>
+                                    @endif
+                                </div> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -65,10 +80,10 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        Book Image
+                        User Image
                     </div>
                     <div class="card-body">
-                        <img src="{{ route('image', ['type'=>'books', 'id'=>$book->id]) }}" alt="{{ $book->book_name }}">
+                        <img class="user-img" src="{{ route('image', ['type'=>'user', 'id'=>$user->id]) }}" alt="{{ $user->name }}">
                     </div>
                 </div>
             </div>

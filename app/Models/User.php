@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Route;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,11 +48,31 @@ class User extends Authenticatable implements MustVerifyEmail
                 return true;
             }
         }else{
+            if(is_array($action)){
+                foreach ($action as $item) {
+                    if($roles[$controller][$item] === false){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            }
             if(isset($roles[$controller][$action])){
                 return $roles[$controller][$action];
+            }else{
+                return true;
             }
         }
         return false;
-        
+    }
+
+    public function is_admin()
+    {
+        return ($this->role == 'admin');
+    }
+    
+    public function is_manager()
+    {
+        return ($this->role == 'manager');
     }
 }

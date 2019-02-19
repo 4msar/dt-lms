@@ -12,11 +12,11 @@
 @section('content')
 <div class="animated fadeIn">
     <div class="buttons">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('layouts.message')
             </div>
-            
+            @if(auth()->user()->ucan('category', 'create'))
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-
+            @endif
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
@@ -67,12 +67,16 @@
                                         </div>
                                     </td>
                                     <td>
+                                        @if(auth()->user()->ucan('category', ['edit', 'delete']))
                                         <form onsubmit="return confirm('Do you really want to delete?');" action="{{ route('categories.destroy', ['category' => $category->id]) }}" method="POST">
                                             <a class="btn btn-info btn-sm" href="{{ route('categories.edit', ['category' => $category->id]) }}"><i class="fa fa-edit"></i></a>
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                         </form>
+                                        @else
+                                        <a href="{{ route('categories.show', ['category'=>$category->id]) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @empty

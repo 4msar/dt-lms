@@ -48,8 +48,9 @@
                                 <td>:</td>
                                 <td>{{ $branch->show_time().' | '. $branch->show_week() }}</td>
                             </tr>
-                            <tr>
-                                <td colspan="3">Open in <a href="{{ $branch->map_link }}" target="_blank">Maps</a></td>
+                            <tr class="text-center">
+                                <td colspan="2"><a class="btn btn-info" href="{{ $branch->map_link }}" target="_blank">Show Location in Maps</a></td>
+                                <td><a class="btn btn-primary" href="{{ url()->current().'?show=books' }}">View books</a></td>
                             </tr>
                         </tbody>
                     </table>

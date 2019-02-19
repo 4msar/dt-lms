@@ -614,8 +614,8 @@ aside.left-panel {
     float: none;
     position: relative; }
     .navbar .navbar-nav > li {
-      padding-left: 30px;
-      padding-right: 30px; }
+      padding-left: 25px;
+      padding-right: 25px; }
       .navbar .navbar-nav > li.active {
         background: #fafafa; }
     .navbar .navbar-nav li {

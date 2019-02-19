@@ -20,17 +20,15 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/themify-icons/themify-icons.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/lib/toastr/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/lib/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
 
-    
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-
 </head>
 
 <body>
-    
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -39,37 +37,66 @@
                     <li class="active">
                         <a href="{{ route('home') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
+                    @if(auth()->user()->ucan('book'))
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Books</a>
                         <ul class="sub-menu children dropdown-menu">
+                            @if(auth()->user()->ucan('book', 'index'))
                             <li><i class="fa fa-list"></i><a href="{{ route('books.index') }}">All Books</a></li>
+                            @endif
+                            @if(auth()->user()->ucan('book', 'create'))
                             <li><i class="fa fa-plus"></i><a href="{{ route('books.create') }}">Add Book</a></li>
+                            @endif
+                            @if(auth()->user()->ucan('category', 'index'))
                             <li><i class="fa fa-cubes"></i><a href="{{ route('categories.index') }}">Categories</a></li>
+                            @endif
                         </ul>
                     </li>
-                    @if(Auth::user()->ucan('branch'))
+                    @endif
+                    @if(auth()->user()->ucan('branch'))
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-random"></i>Branches</a>
                         <ul class="sub-menu children dropdown-menu">
-                            @if(Auth::user()->ucan('branch', 'index'))
+                            @if(auth()->user()->ucan('branch', 'index'))
                             <li><i class="fa fa-list"></i><a href="{{ route('branches.index') }}">All Branches</a></li>
                             @endif
-                            @if(Auth::user()->ucan('branch', 'create'))
+                            @if(auth()->user()->ucan('branch', 'create'))
                             <li><i class="fa fa-plus"></i><a href="{{ route('branches.create') }}">Add Branch</a></li>
                             @endif
                         </ul>
                     </li>
                     @endif
+                    @if(auth()->user()->ucan('user'))
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Users</a>
                         <ul class="sub-menu children dropdown-menu">
+                            @if(auth()->user()->ucan('user', 'index'))
                             <li><i class="fa fa-list"></i><a href="{{ route('users.index') }}">All Users</a></li>
+                            @endif
+                            @if(auth()->user()->ucan('user', 'create'))
                             <li><i class="fa fa-user-plus"></i><a href="{{ route('users.create') }}">Add User</a></li>
+                            @endif
                         </ul>
                     </li>
-
+                    @endif
+                    @if(auth()->user()->ucan('reservation'))
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-wpforms"></i>Reservations</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            @if(auth()->user()->ucan('reservation', 'index'))
+                            <li><i class="fa fa-list"></i><a href="{{ route('reservation.index') }}">Reservation List</a></li>
+                            @endif
+                            @if(auth()->user()->ucan('reservation', 'create'))
+                            <li><i class="fa fa-plus"></i><a href="{{ route('reservation.create') }}">Issue a Book</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                    @endif
+                    
+                    @if(auth()->user()->is_admin())    
                     <li class="menu-title">Extra</li><!-- /.menu-title -->
                     <li><a href="{{ route('home') }}"><i class="menu-icon fa fa-cog"></i>Settings </a></li>
+                    @endif
 
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -170,6 +197,7 @@
     <script src="{{ asset('assets/lib/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/lib/jquery-match-height/jquery.matchHeight-min.js')}}"></script>
     <script src="{{ asset('assets/lib/toastr/toastr.min.js')}}"></script>
+    <script src="{{ asset('assets/lib/select2/select2.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
 
     @if(session()->has('permission'))

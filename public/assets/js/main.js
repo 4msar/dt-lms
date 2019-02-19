@@ -2,28 +2,33 @@ $.noConflict();
 
 /*==== Declaire the variables ====*/
 
-toastr.options = {
-	"closeButton": true,
-	"debug": false,
-	"newestOnTop": false,
-	"progressBar": true,
-	"positionClass": "toast-top-right",
-	"preventDuplicates": false,
-	"onclick": null,
-	"showDuration": "300",
-	"hideDuration": "1000",
-	"timeOut": "5000",
-	"extendedTimeOut": "1000",
-	"showEasing": "swing",
-	"hideEasing": "linear",
-	"showMethod": "fadeIn",
-	"hideMethod": "fadeOut"
+if(typeof toastr != 'undefined'){
+	toastr.options = {
+		"closeButton": true,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": true,
+		"positionClass": "toast-top-right",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
 }
-
 /*==== Functions =====*/
 
 function show_toast(msg, type='info'){
-	return toastr[type](msg);
+	if(typeof toastr != 'undefined'){
+		return toastr[type](msg);
+	}else{
+		return alert(msg);
+	}
 }
 
 jQuery(document).ready(function($) {
@@ -36,8 +41,9 @@ jQuery(document).ready(function($) {
 
 	jQuery('.selectpicker').selectpicker;
 
-
-	
+	if($('.select2').length > 0){
+		$('.select2').select2();
+	}
 
 	$('.search-trigger').on('click', function(event) {
 		event.preventDefault();

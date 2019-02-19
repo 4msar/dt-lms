@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile_number')->nullable();
             $table->string('facebook_profile_id')->nullable();
             $table->string('linkedin_profile_id')->nullable();
-            $table->string('google_id')->nullable();
+            $table->string('google_profile_id')->nullable();
             $table->string('avatar')->default('avatar.png');
             $table->string('designation')->nullable();
             $table->string('work_at')->nullable();

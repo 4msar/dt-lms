@@ -80,7 +80,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -103,7 +103,26 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            // 'username' => 'required|string|min:5|max:255',
+            // 'email' => 'required|string|email|max:255',
+            'role' => 'required|string',
+        ]);
+
+        $user->name = $request->input('name');
+        $user->mobile_number = $request->input('mobile_number');
+        $user->designation = $request->input('designation');
+        $user->work_at = $request->input('work_at');
+        $user->mailing_address = $request->input('mailing_address');
+        $user->role = $request->input('role');
+
+        if($user->save()){
+            $message = ['success' => 'User updated successfully!'];
+        }else{
+            $message = ['warning' => 'Failed to update!'];
+        }
+        return back()->with($message);
     }
 
     /**

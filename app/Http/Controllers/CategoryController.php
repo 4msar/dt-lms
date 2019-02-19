@@ -40,6 +40,16 @@ class CategoryController extends Controller
     }
 
     /**
+     * Show the books of this resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Category $category)
+    {
+        return view('category.books', compact('category'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

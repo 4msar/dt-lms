@@ -84,6 +84,9 @@ class BranchController extends Controller
      */
     public function show(Branch $branch)
     {
+        if(request()->get('show') == 'books'){
+            return view('branch.books', compact('branch'));
+        }
         return view('branch.show', compact('branch'));
     }
 

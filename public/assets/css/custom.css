@@ -13,6 +13,51 @@ img.category-img {
     height: 35px;
 }
 
+img.user-img {
+    margin: 0 auto;
+    display: block;
+}
+
+
+.social-button .linkedin {
+    background: #0077b5;
+    color: #fff; 
+}
+.social-button .linkedin:hover {
+    background: #005b8a; 
+}
+.social-button .google {
+    background: #f63832;
+    color: #fff; 
+}
+.social-button .google:hover {
+    background: #b53733; 
+}
+
+.social-icons i {
+    padding: 10px;
+    color: #fff;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+i.fa.fa-facebook {
+    background-color: #4267b2;
+}
+
+i.fa.fa-twitter {
+    background-color: #1da1f2;
+}
+
+i.fa.fa-linkedin {
+    background-color: #0077b5;
+}
+
+i.fa.fa-google-plus {
+    background-color: #f63832;
+}
+
 
 /* Responsive CSS */
 

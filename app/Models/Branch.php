@@ -18,7 +18,12 @@ class Branch extends Model
 
     public function contact()
     {
-    	return $this->belongsTo(User::class, 'contact_person_id', 'id');
+        return $this->belongsTo(User::class, 'contact_person_id', 'id');
+    }
+
+    public function books()
+    {
+    	return $this->hasMany(Book::class, 'hub_id', 'id');
     }
 
     public static function array_in_string($items)

@@ -31,6 +31,39 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function view_profile()
+    {
+        return view('users.view_profile');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_profile()
+    {
+        return view('users.edit_profile');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update_profile(Request $request)
+    {
+        dd($request->all());
+    }
+
+    /**
      * Show the image of.
      *
      * @return \Illuminate\Contracts\Support\Renderable

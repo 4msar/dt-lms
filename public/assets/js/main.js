@@ -98,6 +98,14 @@ jQuery(document).ready(function($) {
 			 
 	}); 
 
+	var current = window.location.href;
+	$('#main-menu a[href="'+current+'"]').parent('li').addClass('active');
+	if($('#main-menu a[href="'+current+'"]').parents('ul').hasClass('dropdown-menu')){
+		$('#main-menu a[href="'+current+'"]').parents('ul').addClass('active show');
+		$('#main-menu a[href="'+current+'"]').css('color', '#03a9f3');
+		$('#main-menu a[href="'+current+'"]').parents('ul').parent('li').addClass('show');
+	}
+
 	 
 	$(".menu-item-has-children.dropdown").each(function() {
 		$(this).on('click', function() {

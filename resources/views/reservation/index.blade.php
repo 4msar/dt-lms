@@ -26,6 +26,7 @@
                                     <th>Book Name</th>
                                     <th>Book Author</th>
                                     <th>Take By</th>
+                                    <th>Return Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -36,14 +37,15 @@
                                     <td> {{ $reservation->book->book_name }} </td>
                                     <td> {{ $reservation->book->author_name }} </td>
                                     <td> {{ $reservation->take_by->name }}</td>
+                                    <td> {{ date('d M Y', strtotime($reservation->return_date)) }}</td>
                                     <td>
                                         @if(auth()->user()->ucan('reservation', ['show', 'edit', 'delete']))
                                         <form onsubmit="return confirm('Do you really want to delete?');" action="{{ route('reservation.destroy', ['reservation' => $reservation->id]) }}" method="POST">
                                             @if(auth()->user()->ucan('reservation', 'show'))
                                                 <a class="btn btn-success btn-sm" href="{{ route('reservation.show', ['reservation' => $reservation->id]) }}"><i class="fa fa-eye"></i></a>
                                             @endif
-                                            @if(auth()->user()->ucan('reservation', 'edit'))
-                                                <a class="btn btn-info btn-sm" href="{{ route('reservation.edit', ['reservation' => $reservation->id]) }}"><i class="fa fa-edit"></i></a>
+                                            @if(auth()->user()->ucan('reservation', 'edit') && $reservation->returned_at == null)
+                                                <a class="btn btn-info btn-sm" href="{{ route('reservation.edit', ['reservation' => $reservation->id]) }}" title="Return!"><i class="fa fa-reply"></i></a>
                                             @endif
                                             @if(auth()->user()->ucan('reservation', 'destroy'))
                                                 @csrf

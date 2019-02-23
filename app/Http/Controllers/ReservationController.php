@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Book;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -35,7 +38,9 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        $books = Book::where('status', 1)->get();
+        $users = User::all();
+        return view('reservation.create', compact('users', 'books'));
     }
 
     /**
@@ -46,7 +51,30 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'book' => 'required|integer',
+            'user' => 'required|integer',
+            'return_date' => 'required|date',
+        ]);
+        $save = Reservation::create([
+            "book_id" => $request->input('book'), 
+            "user_id" => $request->input('user'), 
+            "return_date" => Carbon::parse($request->input('return_date'))->toDateTimeString(), 
+            "issue_date" =>now()
+        ]);
+
+        $check = Reservation::where('book_id', $request->input('book'))->count();
+        if($check >= $save->book->quantity){
+            $save->book->status = 0;
+            $save->book->save();
+        }
+
+        if($save){
+            $message = ['success' => 'Book issued successfully!'];
+        }else{
+            $message = ['warning' => 'Failed to issue!'];
+        }
+        return back()->with($message);
     }
 
     /**
@@ -57,7 +85,7 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        return view('reservation.show', compact('reservation'));
     }
 
     /**
@@ -68,7 +96,12 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //
+        $reservation->returned_at = now();
+        $reservation->save();
+        $reservation->book->status = 1;
+        $reservation->book->save();
+
+        return back();
     }
 
     /**
@@ -91,6 +124,11 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        if($reservation->delete()){
+            $message = ['success' => 'Reservation deleted successfully!'];
+        }else{
+            $message = ['warning' => 'Failed to delete!'];
+        }
+        return back()->with($message);
     }
 }

@@ -4,7 +4,10 @@
 .navbar-brand{
 	text-align: center;
 }
-
+.right-panel .navbar-brand {
+   width: auto; 
+   display: inline-block;
+}
 .navbar-brand img{
 	height: 40px;
 }

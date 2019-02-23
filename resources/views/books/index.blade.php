@@ -42,7 +42,7 @@
                                     <td><span class="name">{{ $book->book_name }}</span> </td>
                                     <td> <span class="product">{{ $book->author_name }}</span> </td>
                                     <td><span class="count">{{ $book->quantity }}</span></td>
-                                    <td><span class="badge badge-{{ $book->status == 1 ? 'success' : 'warning' }}">{{ $book->status == 1 ? 'Available' : 'Not Available' }}</span></td>
+                                    <td><span class="badge badge-{{ $book->status == 1 ? 'success' : 'warning' }}">{{ $book->status == 1 ? 'Available: '.($book->quantity - $book->issue->where('returned_at', null)->count()).' Copies' : 'Not Available' }}</span></td>
                                     <td>
                                     
                                         <form onsubmit="return confirm('Do you really want to delete?');" action="{{ route('books.destroy', ['book'=>$book->id]) }}" method="POST">

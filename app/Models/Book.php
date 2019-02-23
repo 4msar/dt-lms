@@ -17,7 +17,12 @@ class Book extends Model
 
     public function category()
     {
-    	return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function issue()
+    {
+    	return $this->hasMany(Reservation::class, 'book_id', 'id');
     }
 
     public function owner()

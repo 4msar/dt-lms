@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
+    
+    @stack('header')
 
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 </head>
@@ -34,7 +36,7 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li >
                         <a href="{{ route('home') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     @if(auth()->user()->ucan('book'))
@@ -93,10 +95,10 @@
                     </li>
                     @endif
                     
-                    @if(auth()->user()->is_admin())    
+                    {{-- @if(auth()->user()->is_admin())    
                     <li class="menu-title">Extra</li><!-- /.menu-title -->
                     <li><a href="{{ route('home') }}"><i class="menu-icon fa fa-cog"></i>Settings </a></li>
-                    @endif
+                    @endif --}}
 
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -199,6 +201,8 @@
     <script src="{{ asset('assets/lib/toastr/toastr.min.js')}}"></script>
     <script src="{{ asset('assets/lib/select2/select2.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
+
+    @stack('footer')
 
     @if(session()->has('permission'))
     <script type="text/javascript">show_toast("{{ session('permission') }}")</script>
